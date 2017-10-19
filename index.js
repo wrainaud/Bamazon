@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
     user: "root",
   
     // Your password
-    password: "",
+    password: "root",
     database: "bamazon"
   });
   
@@ -23,4 +23,4 @@ var connection = mysql.createConnection({
 
   function start(){
       console.log("We da best!");
-  }
+  };
