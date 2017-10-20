@@ -1,10 +1,10 @@
 {
-  "name": "Shamazon",
+  "name": "Bamazon",
   "version": "1.0.0",
-  "description": "Shamazon - Like Amazon but worse",
-  "main": "index.js",
+  "description": "Bamazon - Like Amazon but worse",
+  "main": "bamazonCustomer.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node bamazonCustomer.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
