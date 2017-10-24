@@ -14,8 +14,40 @@ var connection = mysql.createConnection({
   // connect to the mysql server and sql database
   connection.connect(function(err) {
     if (err) throw console.log("error at connection.connect: " + err);
-    showProducts();
+    welcometoBamazon();
   });
+
+  function welcometoBamazon(){
+    
+    console.log("\n WELCOME TO...");
+    console.log("\n");
+    console.log(" /$$$$$$$   /$$$$$$  /$$      /$$  /$$$$$$  /$$$$$$$$  /$$$$$$  /$$   /$$");
+    console.log("| $$__  $$ /$$__  $$| $$$    /$$$ /$$__  $$|_____ $$  /$$__  $$| $$$ | $$");
+    console.log("| $$  \ $$| $$  \ $$| $$$$  /$$$$| $$  \ $$     /$$/ | $$  \ $$| $$$$| $$");
+    console.log("| $$$$$$$ | $$$$$$$$| $$ $$/$$ $$| $$$$$$$$    /$$/  | $$  | $$| $$ $$ $$");
+    console.log("| $$__  $$| $$__  $$| $$  $$$| $$| $$__  $$   /$$/   | $$  | $$| $$  $$$$");
+    console.log("| $$  \ $$| $$  | $$| $$\  $ | $$| $$  | $$  /$$/    | $$  | $$| $$\  $$$");
+    console.log("| $$$$$$$/| $$  | $$| $$ \/  | $$| $$  | $$ /$$$$$$$$|  $$$$$$/| $$ \  $$");
+    console.log("|_______/ |__/  |__/|__/     |__/|__/  |__/|________/ \______/ |__/  \__/\n");
+    inquirer.prompt({
+            name: "home",
+            type: "list",            
+            message: "Please make a selection\n",
+            choices: ["Show Products", "Exit"],
+          })
+          .then(function(val){
+              switch (val.home) {
+                  case "Show Products":
+                    showProducts();
+                    break;
+                  case "Exit":
+                    console.log("Goodbye!");
+                    process.exit(0);
+                    break;
+              }
+          })
+
+  }
 
   function showProducts(){
     connection.query("SELECT * FROM products", function(err, res){
@@ -28,16 +60,34 @@ var connection = mysql.createConnection({
         });
         
         for (var i = 0; i < res.length; i++){
-
             table.push([res[i].item_id, res[i].product_name, res[i].department_name, "$" + res[i].price, res[i].stock_quantity]);
-            
         }
 
         console.log(table.toString());
-        
-        purchaseProducts();
-    });
-}
+
+        inquirer
+            .prompt({
+                type: "list",
+                name: "choice",
+                choices:["Yes", "Return Home"],
+                message: "Do you wish to make a purchase?\n"
+                })
+            .then(function(val){
+                switch (val.choice) {
+                    case "Yes":
+                        purchaseProducts();
+                        break;
+                    case "Return Home":
+                        welcometoBamazon();
+                        break;
+                    default:
+                        console.log("Goodbye!");
+                        process.exit(0);
+                        break; 
+                    }
+                });
+            
+
 
 // function which prompts the user for what action they should take
 function purchaseProducts() {
@@ -89,7 +139,29 @@ function purchaseProducts() {
                         var subTotal = res[0].price * answer.units;
                         console.log("Subtotal: " + "$" + subTotal);
                         console.log("\n==============================================\n");
-                        showProducts();
+                        
+                        inquirer.prompt(
+                            {
+                              type: "list",
+                              name: "choice2",
+                              choices:["Keep Shopping", "Return Home"],
+                              message: "What's next?\n"
+                          
+                      })
+                      .then(function(val3){
+                          switch (val3.choice2){
+                              case "Keep Shopping":
+                                purchaseProducts();
+                                break;
+                              case "Return Home":
+                                welcometoBamazon();
+                                break;
+                              default:
+                                console.log("Goodbye!");
+                                process.exit(0);
+                                break; 
+                          }
+                      });
                     
                     }
                 );
@@ -99,7 +171,6 @@ function purchaseProducts() {
                 console.log("Out of Stock - Please choose a different product or quantity");
                 console.log("\n==============================================\n");
                 showProducts();
-               
               }
         
         });
@@ -108,3 +179,4 @@ function purchaseProducts() {
         });
     });
   }
+    });}
