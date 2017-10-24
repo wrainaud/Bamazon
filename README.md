@@ -5,11 +5,14 @@ Bamazon - A command line application similar to Amazon
 - email: wrainaud@outlook.com
 - web: http://wrainaud.com
 
-![Welcome Screen] (https://github.com/wrainaud/Bamazon/blob/master/img/welcome.gif)
+# Welcome Screen 
+![Welcome](img/welcome.gif)
 
-![alt tag](https://github.com/wrainaud/Bamazon/blob/master/img/welcome.PNG)
+# Show Products 
+![Show Products](img/show-products.gif)
 
-![Purchase Products] (https://github.com/wrainaud/Bamazon/blob/master/img/purchase-products.gif)
+# Purchase Products 
+![Purchase Products](img/purchase-products.gif)
 
 ## Technologies
-Created using SQL, NPM, Javascript, Inquirer, CLI-Table
+Created using SQL, NPM, Javascript, Inquirer, CLI-Table, and Node.js
