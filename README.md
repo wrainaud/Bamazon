@@ -7,7 +7,7 @@ Bamazon - A command line application similar to Amazon
 
 ![Welcome Screen] (https://github.com/wrainaud/Bamazon/blob/master/img/welcome.PNG)
 
-![Show Products] (https://github.com/wrainaud/Bamazon/blob/master/img/show-products.PNG)
+![Show Products] (wrainaud.github.com/Bamazon/blob/master/img/show-products.PNG)
 
 ![Purchase Products] (https://github.com/wrainaud/Bamazon/blob/master/img/purchase-products.PNG)
 
